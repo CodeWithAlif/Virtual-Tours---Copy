@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--projecttitle-->
+    <title>Gedung E11</title>
+    <!--projecttitle-end-->
+    <!--projectdescription-->
+    <meta name="description" content="Baruuuuurururuurru" />
+    <!--projectdescription-end-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no" />
+
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!-- Insert this line above script imports  -->
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+
+    <script src="imagedata.js"></script>
+    <script src="jquery.js"></script>
+    <script src="three.min.js"></script>
+    <script src="panolens.min.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>
+      if (window.module) module = window.module;
+    </script>
+
+    <style>
+      /* SCROLLBAR STYLING */
+      /* width */
+      ::-webkit-scrollbar {
+        width: 0.25em;
+        height: 0.25em;
+      }
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #2c3643;
+      }
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #0d9e59;
+        transition: background 0.5s;
+      }
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00e075;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #2e5db1;
+        color: #2e5db1;
+      }
+
+      a:link,
+      a:visited {
+        color: #bdc3c7;
+      }
+
+      .fullwrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #2e5db1;
+      }
+
+      #container {
+        width: 100%;
+        height: 100%;
+      }
+
+      #tmp {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 3em;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        display: none;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background-color: #2e5db1;
+      }
+      .backbutton {
+        height: 40px;
+        width: 100px;
+        color: white;
+        background-color: #132c55;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        text-align: center; /* Added to center the text */
+        line-height: 40px; /* Added to vertically center the text, should match the button's height */
+      }
+      .backbutton:hover {
+        background-color: #0a1c33;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <div class="header">
+      <a href="index.html" class="backbutton">Kembali</a>
+    </div>
+    <div id="container" style="color: black"></div>
+
+    <!--customhtml-->
+    <div class="customhotspot" id="PXL_20240318_154349340"></div>
+    <div class="customhotspot" id="PXL_20240318_154726229"></div>
+    <div class="customhotspot" id="PXL_20240318_155141991"></div>
+    <div class="customhotspot" id="PXL_20240318_155413500"></div>
+    <div class="customhotspot" id="PXL_20240416_161155095"></div>
+    <div class="customhotspot" id="PXL_20240416_143913518"></div>
+    <div class="customhotspot" id="PXL_20240416_154931443"></div>
+    <div class="customhotspot" id="PXL_20240416_150415151"></div>
+    <div class="customhotspot" id="PXL_20240416_152109624"></div>
+    <div class="customhotspot" id="PXL_20240416_160735702"></div>
+    <div class="customhotspot" id="PXL_20240416_145537844"></div>
+    <div class="customhotspot" id="PXL_20240318_162548601"></div>
+    <div class="customhotspot" id="PXL_20240318_160411127"></div>
+    <div class="customhotspot" id="IMG20240417WA0029"></div>
+    <div class="customhotspot" id="IMG20240417WA0027"></div>
+    <div class="customhotspot" id="IMG20240417WA0026"></div>
+    <div class="customhotspot" id="IMG20240417WA0026W9tGQ"></div>
+    <div class="customhotspot" id="WhatsAppImage20240417at20"></div>
+    <!--customhtml-end-->
+
+    <div id="tmp">
+      <div style="width: 100%; height: 100%; overflow: hidden; overflow-y: auto; box-sizing: border-box; position: relative" id="tmpcontent"></div>
+      <div class="mediaclosebutton" onclick="hideTemp()"><i class="fa fa-times-circle"></i></div>
+    </div>
+
+    <div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%">
+      <div style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px"><!--loadingtext-->Loading...<!--loadingtext-end--></div>
+    </div>
+
+    <script>
+      var container = document.querySelector("#container");
+      /*panolens*/
+
+      var viewer = new PANOLENS.Viewer({ container: container, controlBar: false, output: "console", autoHideInfospot: false });
+
+      /*panolens-end*/
+
+      viewer.addUpdateCallback(function () {});
+
+      /*panoramas*/
+
+      var PXL_20240318_154349340 = new PANOLENS.ImagePanorama("panoramas/PXL_20240318_154349340.PHOTOSPHERE.jpg");
+      PXL_20240318_154349340.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240318_154349340.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240318_154349340.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240318_1543493400 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1543493400.position.set(2746.3, -403.59, -4150.24);
+      PXL_20240318_154349340.add(infospotPXL_20240318_1543493400);
+
+      infospotPXL_20240318_1543493400.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_154726229");
+      });
+
+      var infospotPXL_20240318_1543493401 = new PANOLENS.Infospot(512, hotspotIcons[0].data, true);
+      infospotPXL_20240318_1543493401.position.set(4864.19, 1098.75, -215.29);
+      PXL_20240318_154349340.add(infospotPXL_20240318_1543493401);
+
+      infospotPXL_20240318_1543493401.addEventListener("click", function () {
+        window.open("https://www.youtube.com/watch?v=f343XRn0-2E", "_blank");
+      });
+
+      viewer.add(PXL_20240318_154349340);
+
+      var PXL_20240318_154726229 = new PANOLENS.ImagePanorama("panoramas/PXL_20240318_154726229.PHOTOSPHERE.jpg");
+      PXL_20240318_154726229.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240318_154726229.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240318_154726229.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240318_1547262290 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1547262290.position.set(-4783.58, -578.66, 1294.9);
+      PXL_20240318_154726229.add(infospotPXL_20240318_1547262290);
+
+      infospotPXL_20240318_1547262290.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_154349340");
+      });
+
+      var infospotPXL_20240318_1547262291 = new PANOLENS.Infospot(512, hotspotIcons[0].data, true);
+      infospotPXL_20240318_1547262291.position.set(4927.58, -781.99, 207.72);
+      PXL_20240318_154726229.add(infospotPXL_20240318_1547262291);
+
+      infospotPXL_20240318_1547262291.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_155141991");
+      });
+
+      viewer.add(PXL_20240318_154726229);
+
+      var PXL_20240318_155141991 = new PANOLENS.ImagePanorama("panoramas/PXL_20240318_155141991.PHOTOSPHERE.jpg");
+      PXL_20240318_155141991.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240318_155141991.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240318_155141991.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240318_1551419910 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1551419910.position.set(-4264.99, -1293.67, 2245.52);
+      PXL_20240318_155141991.add(infospotPXL_20240318_1551419910);
+
+      infospotPXL_20240318_1551419910.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_154931443");
+      });
+
+      var infospotPXL_20240318_1551419911 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1551419911.position.set(4976.68, -420.6, 86.97);
+      PXL_20240318_155141991.add(infospotPXL_20240318_1551419911);
+
+      infospotPXL_20240318_1551419911.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_155413500");
+      });
+
+      var infospotPXL_20240318_1551419912 = new PANOLENS.Infospot(512, hotspotIcons[0].data, true);
+      infospotPXL_20240318_1551419912.position.set(-4922.82, -476.37, -675.11);
+      PXL_20240318_155141991.add(infospotPXL_20240318_1551419912);
+
+      infospotPXL_20240318_1551419912.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_154726229");
+      });
+
+      var infospotPXL_20240318_1551419913 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1551419913.position.set(2005.1, -1735.81, 4229.15);
+      PXL_20240318_155141991.add(infospotPXL_20240318_1551419913);
+
+      infospotPXL_20240318_1551419913.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_162548601");
+      });
+
+      var infospotPXL_20240318_1551419914 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1551419914.position.set(3351.18, -1311.32, 3457.7);
+      PXL_20240318_155141991.add(infospotPXL_20240318_1551419914);
+
+      infospotPXL_20240318_1551419914.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_160411127");
+      });
+
+      var infospotPXL_20240318_1551419915 = new PANOLENS.Infospot(512, hotspotIcons[0].data, true);
+      infospotPXL_20240318_1551419915.position.set(-4776.7, -197.74, 1435.17);
+      PXL_20240318_155141991.add(infospotPXL_20240318_1551419915);
+
+      infospotPXL_20240318_1551419915.addEventListener("click", function () {
+        showMedia(1, "images/b11lt.21.png");
+      });
+
+      viewer.add(PXL_20240318_155141991);
+
+      var PXL_20240318_155413500 = new PANOLENS.ImagePanorama("panoramas/PXL_20240318_155413500.PHOTOSPHERE.jpg");
+      PXL_20240318_155413500.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240318_155413500.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240318_155413500.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240318_1554135000 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1554135000.position.set(4979.46, -420.42, 34.33);
+      PXL_20240318_155413500.add(infospotPXL_20240318_1554135000);
+
+      infospotPXL_20240318_1554135000.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_161155095");
+      });
+
+      var infospotPXL_20240318_1554135001 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1554135001.position.set(129.3, -103.69, 4989.15);
+      PXL_20240318_155413500.add(infospotPXL_20240318_1554135001);
+
+      infospotPXL_20240318_1554135001.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_155141991");
+      });
+
+      var infospotPXL_20240318_1554135002 = new PANOLENS.Infospot(512, hotspotIcons[0].data, true);
+      infospotPXL_20240318_1554135002.position.set(2168.71, -550.28, -4460.7);
+      PXL_20240318_155413500.add(infospotPXL_20240318_1554135002);
+
+      infospotPXL_20240318_1554135002.addEventListener("click", function () {
+        showMedia(1, "images/A181101002_photo20181101_12_07_29photo.jpg");
+      });
+
+      viewer.add(PXL_20240318_155413500);
+
+      var PXL_20240416_161155095 = new PANOLENS.ImagePanorama("panoramas/PXL_20240416_161155095.PHOTOSPHERE.jpg");
+      PXL_20240416_161155095.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240416_161155095.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240416_161155095.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240416_1611550950 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1611550950.position.set(4967.43, -462.88, 167.94);
+      PXL_20240416_161155095.add(infospotPXL_20240416_1611550950);
+
+      infospotPXL_20240416_1611550950.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_155413500");
+      });
+
+      var infospotPXL_20240416_1611550951 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1611550951.position.set(569.64, -237.32, -4955.74);
+      PXL_20240416_161155095.add(infospotPXL_20240416_1611550951);
+
+      infospotPXL_20240416_1611550951.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_154931443");
+      });
+
+      var infospotPXL_20240416_1611550952 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1611550952.position.set(-873.23, -1310.79, 4736.46);
+      PXL_20240416_161155095.add(infospotPXL_20240416_1611550952);
+
+      infospotPXL_20240416_1611550952.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_143913518");
+      });
+
+      viewer.add(PXL_20240416_161155095);
+
+      var PXL_20240416_143913518 = new PANOLENS.ImagePanorama("panoramas/PXL_20240416_143913518.PHOTOSPHERE.jpg");
+      PXL_20240416_143913518.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240416_143913518.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240416_143913518.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240416_1439135180 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1439135180.position.set(-123.82, -199.52, 4985.67);
+      PXL_20240416_143913518.add(infospotPXL_20240416_1439135180);
+
+      infospotPXL_20240416_1439135180.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_161155095");
+      });
+
+      var infospotPXL_20240416_1439135181 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1439135181.position.set(4201.21, -2701.31, -50.5);
+      PXL_20240416_143913518.add(infospotPXL_20240416_1439135181);
+
+      infospotPXL_20240416_1439135181.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_150415151");
+      });
+
+      var infospotPXL_20240416_1439135182 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1439135182.position.set(3097.92, -2130.26, 3284.76);
+      PXL_20240416_143913518.add(infospotPXL_20240416_1439135182);
+
+      infospotPXL_20240416_1439135182.addEventListener("click", function () {
+        ChangePanorama("WhatsAppImage20240417at20");
+      });
+
+      viewer.add(PXL_20240416_143913518);
+
+      var PXL_20240416_154931443 = new PANOLENS.ImagePanorama("panoramas/PXL_20240416_154931443.PHOTOSPHERE.jpg");
+      PXL_20240416_154931443.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240416_154931443.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240416_154931443.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240416_1549314430 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1549314430.position.set(3821.04, -1381.91, -2900.3);
+      PXL_20240416_154931443.add(infospotPXL_20240416_1549314430);
+
+      infospotPXL_20240416_1549314430.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_155141991");
+      });
+
+      var infospotPXL_20240416_1549314431 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1549314431.position.set(-251.13, -328.53, 4973.93);
+      PXL_20240416_154931443.add(infospotPXL_20240416_1549314431);
+
+      infospotPXL_20240416_1549314431.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_161155095");
+      });
+
+      viewer.add(PXL_20240416_154931443);
+
+      var PXL_20240416_150415151 = new PANOLENS.ImagePanorama("panoramas/PXL_20240416_150415151.PHOTOSPHERE.jpg");
+      PXL_20240416_150415151.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240416_150415151.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240416_150415151.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240416_1504151510 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1504151510.position.set(4783.12, 542.72, 1313.01);
+      PXL_20240416_150415151.add(infospotPXL_20240416_1504151510);
+
+      infospotPXL_20240416_1504151510.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_143913518");
+      });
+
+      var infospotPXL_20240416_1504151511 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1504151511.position.set(18.36, -324.79, 4986.28);
+      PXL_20240416_150415151.add(infospotPXL_20240416_1504151511);
+
+      infospotPXL_20240416_1504151511.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_152109624");
+      });
+
+      viewer.add(PXL_20240416_150415151);
+
+      var PXL_20240416_152109624 = new PANOLENS.ImagePanorama("panoramas/PXL_20240416_152109624.PHOTOSPHERE.jpg");
+      PXL_20240416_152109624.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240416_152109624.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240416_152109624.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240416_1521096240 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1521096240.position.set(4931.61, -694.76, 327.76);
+      PXL_20240416_152109624.add(infospotPXL_20240416_1521096240);
+
+      infospotPXL_20240416_1521096240.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_160735702");
+      });
+
+      var infospotPXL_20240416_1521096241 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1521096241.position.set(215.46, -164.77, -4982.23);
+      PXL_20240416_152109624.add(infospotPXL_20240416_1521096241);
+
+      infospotPXL_20240416_1521096241.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_145537844");
+      });
+
+      viewer.add(PXL_20240416_152109624);
+
+      var PXL_20240416_160735702 = new PANOLENS.ImagePanorama("panoramas/PXL_20240416_160735702.PHOTOSPHERE.jpg");
+      PXL_20240416_160735702.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240416_160735702.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240416_160735702.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240416_1607357020 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1607357020.position.set(1551.7, -395.54, -4735.84);
+      PXL_20240416_160735702.add(infospotPXL_20240416_1607357020);
+
+      infospotPXL_20240416_1607357020.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_152109624");
+      });
+
+      var infospotPXL_20240416_1607357021 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1607357021.position.set(4873.42, -206.71, 1072.84);
+      PXL_20240416_160735702.add(infospotPXL_20240416_1607357021);
+
+      infospotPXL_20240416_1607357021.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_162548601");
+      });
+
+      viewer.add(PXL_20240416_160735702);
+
+      var PXL_20240416_145537844 = new PANOLENS.ImagePanorama("panoramas/PXL_20240416_145537844.PHOTOSPHERE.jpg");
+      PXL_20240416_145537844.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240416_145537844.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240416_145537844.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240416_1455378440 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1455378440.position.set(4849.63, -979.9, 655.07);
+      PXL_20240416_145537844.add(infospotPXL_20240416_1455378440);
+
+      infospotPXL_20240416_1455378440.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_162548601");
+      });
+
+      var infospotPXL_20240416_1455378441 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240416_1455378441.position.set(-349.55, -729.09, 4926.41);
+      PXL_20240416_145537844.add(infospotPXL_20240416_1455378441);
+
+      infospotPXL_20240416_1455378441.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_152109624");
+      });
+
+      viewer.add(PXL_20240416_145537844);
+
+      var PXL_20240318_162548601 = new PANOLENS.ImagePanorama("panoramas/PXL_20240318_162548601.PHOTOSPHERE.jpg");
+      PXL_20240318_162548601.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240318_162548601.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240318_162548601.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240318_1625486010 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1625486010.position.set(29.49, -518.18, -4968.14);
+      PXL_20240318_162548601.add(infospotPXL_20240318_1625486010);
+
+      infospotPXL_20240318_1625486010.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_160735702");
+      });
+
+      var infospotPXL_20240318_1625486011 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1625486011.position.set(4932.61, -677.53, 347.58);
+      PXL_20240318_162548601.add(infospotPXL_20240318_1625486011);
+
+      infospotPXL_20240318_1625486011.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_145537844");
+      });
+
+      var infospotPXL_20240318_1625486012 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1625486012.position.set(2986.61, -1393.77, -3746.85);
+      PXL_20240318_162548601.add(infospotPXL_20240318_1625486012);
+
+      infospotPXL_20240318_1625486012.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_155141991");
+      });
+
+      viewer.add(PXL_20240318_162548601);
+
+      var PXL_20240318_160411127 = new PANOLENS.ImagePanorama("panoramas/PXL_20240318_160411127.PHOTOSPHERE.jpg");
+      PXL_20240318_160411127.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      PXL_20240318_160411127.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      PXL_20240318_160411127.addEventListener("click", function (e) {});
+
+      var infospotPXL_20240318_1604111270 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1604111270.position.set(-3437.33, -1625.15, 3236.72);
+      PXL_20240318_160411127.add(infospotPXL_20240318_1604111270);
+
+      infospotPXL_20240318_1604111270.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_155141991");
+      });
+
+      var infospotPXL_20240318_1604111271 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotPXL_20240318_1604111271.position.set(-4947.48, -603.99, 230.0);
+      PXL_20240318_160411127.add(infospotPXL_20240318_1604111271);
+
+      infospotPXL_20240318_1604111271.addEventListener("click", function () {
+        ChangePanorama("IMG20240417WA0029");
+      });
+
+      viewer.add(PXL_20240318_160411127);
+
+      var IMG20240417WA0029 = new PANOLENS.ImagePanorama("panoramas/IMG20240417WA0029.jpg");
+      IMG20240417WA0029.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      IMG20240417WA0029.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      IMG20240417WA0029.addEventListener("click", function (e) {});
+
+      var infospotIMG20240417WA00290 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotIMG20240417WA00290.position.set(-163.94, -550.67, -4957.25);
+      IMG20240417WA0029.add(infospotIMG20240417WA00290);
+
+      infospotIMG20240417WA00290.addEventListener("click", function () {
+        ChangePanorama("PXL_20240318_160411127");
+      });
+
+      var infospotIMG20240417WA00291 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotIMG20240417WA00291.position.set(4976.54, -346.07, 188.21);
+      IMG20240417WA0029.add(infospotIMG20240417WA00291);
+
+      infospotIMG20240417WA00291.addEventListener("click", function () {
+        ChangePanorama("IMG20240417WA0026");
+      });
+
+      viewer.add(IMG20240417WA0029);
+
+      var IMG20240417WA0027 = new PANOLENS.ImagePanorama("panoramas/IMG20240417WA0027.jpg");
+      IMG20240417WA0027.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      IMG20240417WA0027.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      IMG20240417WA0027.addEventListener("click", function (e) {});
+
+      var infospotIMG20240417WA00270 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotIMG20240417WA00270.position.set(1597.81, -1314.63, 4542.8);
+      IMG20240417WA0027.add(infospotIMG20240417WA00270);
+
+      infospotIMG20240417WA00270.addEventListener("click", function () {
+        ChangePanorama("WhatsAppImage20240417at20");
+      });
+
+      viewer.add(IMG20240417WA0027);
+
+      var IMG20240417WA0026 = new PANOLENS.ImagePanorama("panoramas/IMG20240417WA0026.jpg");
+      IMG20240417WA0026.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      IMG20240417WA0026.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      IMG20240417WA0026.addEventListener("click", function (e) {});
+
+      var infospotIMG20240417WA00260 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotIMG20240417WA00260.position.set(441.93, -340.92, -4963.44);
+      IMG20240417WA0026.add(infospotIMG20240417WA00260);
+
+      infospotIMG20240417WA00260.addEventListener("click", function () {
+        ChangePanorama("IMG20240417WA0029");
+      });
+
+      var infospotIMG20240417WA00261 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotIMG20240417WA00261.position.set(-290.73, -1222.58, 4831.0);
+      IMG20240417WA0026.add(infospotIMG20240417WA00261);
+
+      infospotIMG20240417WA00261.addEventListener("click", function () {
+        ChangePanorama("WhatsAppImage20240417at20");
+      });
+
+      viewer.add(IMG20240417WA0026);
+
+      var IMG20240417WA0026W9tGQ = new PANOLENS.ImagePanorama("panoramas/IMG20240417WA0026W9tGQ.jpg");
+      IMG20240417WA0026W9tGQ.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      IMG20240417WA0026W9tGQ.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      IMG20240417WA0026W9tGQ.addEventListener("click", function (e) {});
+
+      viewer.add(IMG20240417WA0026W9tGQ);
+
+      var WhatsAppImage20240417at20 = new PANOLENS.ImagePanorama("panoramas/WhatsAppImage20240417at20.42.47_322783a7.jpg");
+      WhatsAppImage20240417at20.addEventListener("progress", function (e) {
+        $("#loading").show();
+      });
+      WhatsAppImage20240417at20.addEventListener("load", function (e) {
+        //$("#loading").fadeOut();
+      });
+      WhatsAppImage20240417at20.addEventListener("click", function (e) {});
+
+      var infospotWhatsAppImage20240417at200 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotWhatsAppImage20240417at200.position.set(-14.53, -3105.05, 3913.36);
+      WhatsAppImage20240417at20.add(infospotWhatsAppImage20240417at200);
+
+      infospotWhatsAppImage20240417at200.addEventListener("click", function () {
+        ChangePanorama("IMG20240417WA0027");
+      });
+
+      var infospotWhatsAppImage20240417at201 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotWhatsAppImage20240417at201.position.set(4985.09, -342.9, -27.44);
+      WhatsAppImage20240417at20.add(infospotWhatsAppImage20240417at201);
+
+      infospotWhatsAppImage20240417at201.addEventListener("click", function () {
+        ChangePanorama("IMG20240417WA0026");
+      });
+
+      var infospotWhatsAppImage20240417at202 = new PANOLENS.Infospot(512, hotspotIcons[1].data, true);
+      infospotWhatsAppImage20240417at202.position.set(-1645.1, -3203.96, -3461.29);
+      WhatsAppImage20240417at20.add(infospotWhatsAppImage20240417at202);
+
+      infospotWhatsAppImage20240417at202.addEventListener("click", function () {
+        ChangePanorama("PXL_20240416_143913518");
+      });
+
+      viewer.add(WhatsAppImage20240417at20);
+
+      $(document).ready(function () {
+        ChangePanorama("PXL_20240318_154349340");
+      });
+
+      /*panoramas-end*/
+
+      function hideTemp() {
+        $("#tmp").fadeOut();
+        setTimeout(function () {
+          $("#tmpcontent").html("");
+        }, 1000);
+      }
+
+      function showMedia(type, content) {
+        switch (type) {
+          case 1:
+            //Image
+            $("#tmpcontent").html("<img src='" + content + "' style='width: 100%;'>");
+            $("#tmp").fadeIn();
+            break;
+          case 2:
+            //Video
+            $("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" + content + "' type='video/mp4'> Your browser does not support the video tag. </video>");
+            $("#tmp").fadeIn();
+            break;
+          case 3:
+            //Audio
+            $("#tmpcontent").html("<audio controls style='width: 100%;'><source src='" + content + "' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
+            $("#tmp").fadeIn();
+            break;
+          case 4:
+            //PDF
+            $("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../" + content + "' style='width: 100%; height: 99%;'></iframe>");
+            $("#tmp").fadeIn();
+            break;
+        }
+      }
+
+      //Update Callback
+      viewer.addUpdateCallback(function () {
+        /*viewerupdatecallback*/
+        if (viewer.panorama == PXL_20240318_154349340) {
+        }
+
+        if (viewer.panorama == PXL_20240318_154726229) {
+        }
+
+        if (viewer.panorama == PXL_20240318_155141991) {
+        }
+
+        if (viewer.panorama == PXL_20240318_155413500) {
+        }
+
+        if (viewer.panorama == PXL_20240416_161155095) {
+        }
+
+        if (viewer.panorama == PXL_20240416_143913518) {
+        }
+
+        if (viewer.panorama == PXL_20240416_154931443) {
+        }
+
+        if (viewer.panorama == PXL_20240416_150415151) {
+        }
+
+        if (viewer.panorama == PXL_20240416_152109624) {
+        }
+
+        if (viewer.panorama == PXL_20240416_160735702) {
+        }
+
+        if (viewer.panorama == PXL_20240416_145537844) {
+        }
+
+        if (viewer.panorama == PXL_20240318_162548601) {
+        }
+
+        if (viewer.panorama == PXL_20240318_160411127) {
+        }
+
+        if (viewer.panorama == IMG20240417WA0029) {
+        }
+
+        if (viewer.panorama == IMG20240417WA0027) {
+        }
+
+        if (viewer.panorama == IMG20240417WA0026) {
+        }
+
+        if (viewer.panorama == IMG20240417WA0026W9tGQ) {
+        }
+
+        if (viewer.panorama == WhatsAppImage20240417at20) {
+        }
+        /*viewerupdatecallback-end*/
+      });
+
+      var hotspotsvisible = true;
+      function ShowMyInfospot(hs, elid) {
+        var thehs = toScreenPosition(hs);
+        if (thehs.z < 1) {
+          $("#" + elid).css({
+            top: thehs.y - $("#" + elid).height() / 2 + "px",
+            left: thehs.x - $("#" + elid).width() / 2 + "px",
+          });
+          if (hotspotsvisible) $("#" + elid).show();
+        } else {
+          $("#" + elid).hide();
+        }
+      }
+
+      function toScreenPosition(obj) {
+        var vector = new THREE.Vector3();
+        var widthHalf = 0.5 * innerWidth;
+        var heightHalf = 0.5 * innerHeight;
+
+        //obj.updateMatrixWorld();
+        vector.setFromMatrixPosition(obj.matrixWorld);
+
+        vector.project(viewer.camera);
+
+        vector.x = vector.x * widthHalf + widthHalf;
+        vector.y = -(vector.y * heightHalf) + heightHalf;
+
+        return {
+          x: vector.x,
+          y: vector.y,
+          z: vector.z,
+        };
+      }
+
+      var currentPanorama;
+      function ChangePanorama(panorama) {
+        currentPanorama = panorama;
+        HideInfospots();
+        $("#loading").fadeIn();
+        //$(".customhotspot").fadeOut();
+        setTimeout(function () {
+          viewer.setPanorama(window[panorama]);
+        }, 100);
+        setTimeout(function () {
+          $("#" + panorama).fadeIn();
+          $("#loading").fadeOut();
+        }, 1000);
+      }
+
+      function HideInfospots() {
+        $(".customhotspot").fadeOut();
+      } /*customjs-end*/
+
+      /*customjs*/
+    </script>
+  </body>
+</html>
